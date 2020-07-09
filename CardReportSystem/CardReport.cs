@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CardReportSystem
 {
+    [Serializable]
     class CardReport
     {
         //属性
