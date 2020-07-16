@@ -22,12 +22,13 @@ namespace CardReportSystem
         public Form1()
         {
             InitializeComponent();
-            dgvCardData.DataSource = _Cards;
+            //dgvCardData.DataSource = _Cards;
         }
 
         //初期でボタンをマスク
         private void Form1_Load(object sender, EventArgs e)
         {
+            dgvCardData.Columns[0].Visible = false;
             initButton();
             initImage();
         }
@@ -139,7 +140,7 @@ namespace CardReportSystem
         //ボタンのマスクの追加、解除機能
         private void initButton()
         {
-            if (_Cards.Count > 0)
+            if (this.infosys202022DataSet.CardReport.Count > 0)
             {
                 btCardChange.Enabled = true;
                 btCardDelete.Enabled = true;
@@ -176,19 +177,16 @@ namespace CardReportSystem
         //ボタン修正
         private void btCardChange_Click(object sender, EventArgs e)
         {
-            //変更対象のレコードを取り出す
-            CardReport selectedCard = _Cards[dgvCardData.CurrentRow.Index];
-
             //レコードを変更
-            selectedCard.CreatedDate = dbCreatedDate.Value;
-            selectedCard.Author = cbAuthor.Text;
-            selectedCard.Elemental = RadioGet();
-            selectedCard.Name = cbCardName.Text;
-            selectedCard.Text = tbText.Text;
-            selectedCard.Picture = pbCard.Image;
+            dgvCardData.CurrentRow.Cells[6].Value = ImageToByteArray(pbCard.Image);
 
             //変更を反映
             dgvCardData.Refresh();
+
+            //データベース反映
+            this.Validate();
+            this.cardReportBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202022DataSet);
         }
 
         //ボタン削除
@@ -208,55 +206,42 @@ namespace CardReportSystem
         //クリックしたデータをラベルに表示
         private void dgvCardData_Click(object sender, EventArgs e)
         {
-            //選択したレコードを取り出す
-            //データグッドビューで選択した行のインデックスを元に
-            //BindingListのデータを取得する
-            if (dgvCardData.CurrentRow != null)
+            if (dgvCardData.Rows.Count > 0)
             {
-                CardReport selecedCar = _Cards[dgvCardData.CurrentRow.Index];
-
-                dbCreatedDate.Value = selecedCar.CreatedDate;
-                cbAuthor.Text = selecedCar.Author;
-                dgvRadioGet(selecedCar);
-                cbCardName.Text = selecedCar.Name;
-                tbText.Text = selecedCar.Text;
-                pbCard.Image = selecedCar.Picture;
+                dgvRadioGet(dgvCardData.CurrentRow.Cells[3].Value.ToString());
             }
-
-            initButton();
-            initImage();
         }
 
         //クリックしたデータの属性を取得
-        private void dgvRadioGet(CardReport selectedCar)
+        private void dgvRadioGet(string elemental)
         {
-            switch (selectedCar.Elemental)
+            switch (elemental)
             {
-                case CardReport.CardElemental.火:
+                case "火":
                     rbFire.Checked = true;
                     break;
-                case CardReport.CardElemental.水:
+                case "水":
                     rbAqua.Checked = true;
                     break;
-                case CardReport.CardElemental.風:
+                case "風":
                     rbWind.Checked = true;
                     break;
-                case CardReport.CardElemental.地:
+                case "地":
                     rbNorth.Checked = true;
                     break;
-                case CardReport.CardElemental.闇:
+                case "闇":
                     rbDark.Checked = true;
                     break;
-                case CardReport.CardElemental.光:
+                case "光":
                     rbLight.Checked = true;
                     break;
-                case CardReport.CardElemental.神:
+                case "神":
                     rbGod.Checked = true;
                     break;
-                case CardReport.CardElemental.魔法:
+                case "魔法":
                     rbMagic.Checked = true;
                     break;
-                case CardReport.CardElemental.罠:
+                case "罠":
                     rbTrap.Checked = true;
                     break;
                 default:
@@ -332,38 +317,28 @@ namespace CardReportSystem
         //ボタン開く（記事）
         private void btCardLoad_Click(object sender, EventArgs e)
         {
-            //オープンファイルダイアログを表示する
-            if (ofdOpenData.ShowDialog() == DialogResult.OK)
-            {
-                using (FileStream fs = new FileStream(ofdOpenData.FileName, FileMode.Open))
-                {
-                    try
-                    {
-                        BinaryFormatter formatter = new BinaryFormatter();
-                        //逆シリアル化して読み込む
-                        _Cards = (BindingList<CardReport>)formatter.Deserialize(fs);
+            // TODO: このコード行はデータを 'infosys202022DataSet.CardReport' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            this.cardReportTableAdapter.Fill(this.infosys202022DataSet.CardReport);
 
-                        //データグリッドビューに設定
-                        dgvCardData.DataSource = _Cards;
+            dgvRadioGet(dgvCardData.CurrentRow.Cells[3].Value.ToString());
 
-                        //選択されている箇所を各コントロールへ表示
-                        dgvCardData_Click(sender, e);
-                        pbCard.SizeMode = PictureBoxSizeMode.StretchImage;
+            initButton();
+        }
 
-                    }
-                    catch (SerializationException se)
-                    {
-                        Console.WriteLine("Failed to serialize. Reason: " + se.Message);
-                        
-                        // メッセージボックスを表示する
-                        MessageBox.Show("ファイルの種類が違います。","エラー",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    }
+        // バイト配列をImageオブジェクトに変換
+        public static Image ByteArrayToImage(byte[] byteData)
+        {
+            ImageConverter imgconv = new ImageConverter();
+            Image img = (Image)imgconv.ConvertFrom(byteData);
+            return img;
+        }
 
-                }
-
-            }
+        // Imageオブジェクトをバイト配列に変換
+        public static byte[] ImageToByteArray(Image img)
+        {
+            ImageConverter imgconv = new ImageConverter();
+            byte[] byteData = (byte[])imgconv.ConvertTo(img, typeof(byte[]));
+            return byteData;
         }
 
         //入力項目全クリア
@@ -399,6 +374,15 @@ namespace CardReportSystem
 
                 }
             }
+        }
+
+        private void cardReportBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            //データベース反映
+            this.Validate();
+            this.cardReportBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202022DataSet);
+
         }
     }
 }
