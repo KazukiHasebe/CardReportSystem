@@ -29,8 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.dbCreatedDate = new System.Windows.Forms.DateTimePicker();
+            this.cardReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.infosys202022DataSet = new CardReportSystem.infosys202022DataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.cbAuthor = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -67,8 +72,6 @@
             this.開くToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.名前を付けて保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.終了ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.infosys202022DataSet = new CardReportSystem.infosys202022DataSet();
-            this.cardReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cardReportTableAdapter = new CardReportSystem.infosys202022DataSetTableAdapters.CardReportTableAdapter();
             this.tableAdapterManager = new CardReportSystem.infosys202022DataSetTableAdapters.TableAdapterManager();
             this.dgvCardData = new System.Windows.Forms.DataGridView();
@@ -79,11 +82,11 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.cardReportBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infosys202022DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCard)).BeginInit();
             this.groupElemental.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.infosys202022DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cardReportBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCardData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,11 +102,20 @@
             // 
             // dbCreatedDate
             // 
-            this.dbCreatedDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cardReportBindingSource, "CreatedDate", true));
             this.dbCreatedDate.Location = new System.Drawing.Point(84, 42);
             this.dbCreatedDate.Name = "dbCreatedDate";
             this.dbCreatedDate.Size = new System.Drawing.Size(200, 19);
             this.dbCreatedDate.TabIndex = 1;
+            // 
+            // cardReportBindingSource
+            // 
+            this.cardReportBindingSource.DataMember = "CardReport";
+            this.cardReportBindingSource.DataSource = this.infosys202022DataSet;
+            // 
+            // infosys202022DataSet
+            // 
+            this.infosys202022DataSet.DataSetName = "infosys202022DataSet";
+            this.infosys202022DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label2
             // 
@@ -117,7 +129,6 @@
             // 
             // cbAuthor
             // 
-            this.cbAuthor.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cardReportBindingSource, "Author", true));
             this.cbAuthor.FormattingEnabled = true;
             this.cbAuthor.Location = new System.Drawing.Point(84, 77);
             this.cbAuthor.Name = "cbAuthor";
@@ -247,7 +258,6 @@
             // 
             // cbCardName
             // 
-            this.cbCardName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cardReportBindingSource, "Name", true));
             this.cbCardName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cbCardName.FormattingEnabled = true;
             this.cbCardName.Location = new System.Drawing.Point(85, 138);
@@ -267,7 +277,6 @@
             // 
             // tbText
             // 
-            this.tbText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cardReportBindingSource, "Text", true));
             this.tbText.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tbText.Location = new System.Drawing.Point(84, 174);
             this.tbText.Multiline = true;
@@ -455,16 +464,6 @@
             this.終了ToolStripMenuItem.Text = "終了(&X)";
             this.終了ToolStripMenuItem.Click += new System.EventHandler(this.終了ToolStripMenuItem_Click);
             // 
-            // infosys202022DataSet
-            // 
-            this.infosys202022DataSet.DataSetName = "infosys202022DataSet";
-            this.infosys202022DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // cardReportBindingSource
-            // 
-            this.cardReportBindingSource.DataMember = "CardReport";
-            this.cardReportBindingSource.DataSource = this.infosys202022DataSet;
-            // 
             // cardReportTableAdapter
             // 
             this.cardReportTableAdapter.ClearBeforeFill = true;
@@ -478,7 +477,16 @@
             // dgvCardData
             // 
             this.dgvCardData.AllowUserToAddRows = false;
+            this.dgvCardData.AllowUserToDeleteRows = false;
             this.dgvCardData.AutoGenerateColumns = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCardData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCardData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCardData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -489,10 +497,26 @@
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewImageColumn1});
             this.dgvCardData.DataSource = this.cardReportBindingSource;
-            this.dgvCardData.Location = new System.Drawing.Point(85, 433);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCardData.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvCardData.Location = new System.Drawing.Point(83, 459);
             this.dgvCardData.MultiSelect = false;
             this.dgvCardData.Name = "dgvCardData";
             this.dgvCardData.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCardData.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvCardData.RowTemplate.Height = 21;
             this.dgvCardData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCardData.Size = new System.Drawing.Size(754, 220);
@@ -511,36 +535,47 @@
             this.dataGridViewTextBoxColumn2.DataPropertyName = "CreatedDate";
             this.dataGridViewTextBoxColumn2.HeaderText = "CreatedDate";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "Author";
             this.dataGridViewTextBoxColumn3.HeaderText = "Author";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "Elemental";
             this.dataGridViewTextBoxColumn4.HeaderText = "Elemental";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "Name";
             this.dataGridViewTextBoxColumn5.HeaderText = "Name";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "Text";
             this.dataGridViewTextBoxColumn6.HeaderText = "Text";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // dataGridViewImageColumn1
             // 
             this.dataGridViewImageColumn1.DataPropertyName = "Picture";
             this.dataGridViewImageColumn1.HeaderText = "Picture";
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
             // 
             // Form1
             // 
@@ -574,13 +609,13 @@
             this.Name = "Form1";
             this.Text = "カード登録アプリ";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.cardReportBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infosys202022DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCard)).EndInit();
             this.groupElemental.ResumeLayout(false);
             this.groupElemental.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.infosys202022DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cardReportBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCardData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

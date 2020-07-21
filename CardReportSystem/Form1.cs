@@ -19,16 +19,20 @@ namespace CardReportSystem
         //カードデータを入れるバインディングリスト
         BindingList<CardReport> _Cards = new BindingList<CardReport>();
 
+        //画像チェック変数
+        private Boolean check = false;
+
+
         public Form1()
         {
             InitializeComponent();
-            //dgvCardData.DataSource = _Cards;
         }
 
         //初期でボタンをマスク
         private void Form1_Load(object sender, EventArgs e)
         {
             dgvCardData.Columns[0].Visible = false;
+
             initButton();
             initImage();
         }
@@ -158,10 +162,14 @@ namespace CardReportSystem
             if (pbCard.Image == null)
             {
                 btImageDelete.Enabled = false;
+                pbCard.Image = Image.FromFile(@"Image\unnamed.jpg");
+                pbCard.SizeMode = PictureBoxSizeMode.StretchImage;
+                check = true;
             }
             else
             {
                 btImageDelete.Enabled = true;
+                check = false;
             }
         }
 
@@ -178,7 +186,20 @@ namespace CardReportSystem
         private void btCardChange_Click(object sender, EventArgs e)
         {
             //レコードを変更
-            dgvCardData.CurrentRow.Cells[6].Value = ImageToByteArray(pbCard.Image);
+            dgvCardData.CurrentRow.Cells[1].Value = dbCreatedDate.Value;
+            dgvCardData.CurrentRow.Cells[2].Value = cbAuthor.Text;
+            dgvCardData.CurrentRow.Cells[3].Value = RadioGet();
+            dgvCardData.CurrentRow.Cells[4].Value = cbCardName.Text;
+            dgvCardData.CurrentRow.Cells[5].Value = tbText.Text;
+
+            if (check == false)
+            {
+                dgvCardData.CurrentRow.Cells[6].Value = ImageToByteArray(pbCard.Image);
+            }
+            else
+            {
+                dgvCardData.CurrentRow.Cells[6].Value = null;
+            }
 
             //変更を反映
             dgvCardData.Refresh();
@@ -208,8 +229,28 @@ namespace CardReportSystem
         {
             if (dgvCardData.Rows.Count > 0)
             {
+                dbCreatedDate.Value = (DateTime)dgvCardData.CurrentRow.Cells[1].Value;
+                cbAuthor.Text = dgvCardData.CurrentRow.Cells[2].Value.ToString();
+
                 dgvRadioGet(dgvCardData.CurrentRow.Cells[3].Value.ToString());
+
+                cbCardName.Text = dgvCardData.CurrentRow.Cells[4].Value.ToString();
+                tbText.Text = dgvCardData.CurrentRow.Cells[5].Value.ToString();
+
+                if (dgvCardData.CurrentRow.Cells[6].Value != DBNull.Value)
+                {
+                    pbCard.Image = ByteArrayToImage((byte[])dgvCardData.CurrentRow.Cells[6].Value);
+                    pbCard.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else
+                {
+                    pbCard.Image = null;
+                }
+                
             }
+
+            initButton();
+            initImage();
         }
 
         //クリックしたデータの属性を取得
@@ -260,6 +301,7 @@ namespace CardReportSystem
                 //ピクチャーボックスのサイズに画像を調整
                 pbCard.SizeMode = PictureBoxSizeMode.StretchImage;
 
+                check = true;
             }
 
             initImage();
@@ -285,7 +327,7 @@ namespace CardReportSystem
             }
 
             initImage();
-            cellNull();
+            initButton();
         }
 
         //ボタン保存（記事）
@@ -320,9 +362,7 @@ namespace CardReportSystem
             // TODO: このコード行はデータを 'infosys202022DataSet.CardReport' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.cardReportTableAdapter.Fill(this.infosys202022DataSet.CardReport);
 
-            dgvRadioGet(dgvCardData.CurrentRow.Cells[3].Value.ToString());
-
-            initButton();
+            dgvCardData_Click(sender, e);
         }
 
         // バイト配列をImageオブジェクトに変換
