@@ -424,5 +424,14 @@ namespace CardReportSystem
             this.tableAdapterManager.UpdateAll(this.infosys202022DataSet);
 
         }
+
+        private void bfSearchExe_Click(object sender, EventArgs e)
+        {
+            this.cardReportTableAdapter.FillByCardName(this.infosys202022DataSet.CardReport, tbSearchCardName.Text);
+
+            this.cardReportTableAdapter.FillByDate(this.infosys202022DataSet.CardReport, dbSearchDate.Value.ToString());
+            
+            dgvCardData_Click(sender, e);
+        }
     }
 }
