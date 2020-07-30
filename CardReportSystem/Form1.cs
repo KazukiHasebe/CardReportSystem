@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CardReportSystem.infosys202022DataSetTableAdapters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,7 +45,7 @@ namespace CardReportSystem
             {
                 CreatedDate = dbCreatedDate.Value,
                 Author = cbAuthor.Text,
-                Elemental = RadioGet(),
+                Elemental = RadioGet(groupElemental),
                 Name = cbCardName.Text,
                 Text = tbText.Text,
                 Picture = pbCard.Image
@@ -69,12 +70,12 @@ namespace CardReportSystem
         }
 
         //属性を取得
-        private CardReport.CardElemental RadioGet()
+        private CardReport.CardElemental RadioGet(GroupBox box)
         {
 #if true
             string maker = "";
 
-            foreach (RadioButton item in groupElemental.Controls)
+            foreach (RadioButton item in box.Controls)
             {
                 if (item.Checked)
                 {
@@ -96,6 +97,8 @@ namespace CardReportSystem
                     return CardReport.CardElemental.闇;
                 case "光":
                     return CardReport.CardElemental.光;
+                case "神":
+                    return CardReport.CardElemental.神;
                 case "魔法":
                     return CardReport.CardElemental.魔法;
                 case "罠":
@@ -188,7 +191,7 @@ namespace CardReportSystem
             //レコードを変更
             dgvCardData.CurrentRow.Cells[1].Value = dbCreatedDate.Value;
             dgvCardData.CurrentRow.Cells[2].Value = cbAuthor.Text;
-            dgvCardData.CurrentRow.Cells[3].Value = RadioGet();
+            dgvCardData.CurrentRow.Cells[3].Value = RadioGet(groupElemental);
             dgvCardData.CurrentRow.Cells[4].Value = cbCardName.Text;
             dgvCardData.CurrentRow.Cells[5].Value = tbText.Text;
 
@@ -427,11 +430,47 @@ namespace CardReportSystem
 
         private void bfSearchExe_Click(object sender, EventArgs e)
         {
-            this.cardReportTableAdapter.FillByCardName(this.infosys202022DataSet.CardReport, tbSearchCardName.Text);
+            if (rbAND.Checked)
+            {
+                if (tbSearchAuthor.Text == "" && tbSearchCardName.Text == "")
+                {
+                    this.cardReportTableAdapter.FillByDefault(this.infosys202022DataSet.CardReport, dbSearchDate.Value.ToString(), RadioGet(gbSearchElemental).ToString());
+                }
+                else if (tbSearchAuthor.Text == "")
+                {
+                    this.cardReportTableAdapter.FillByName(this.infosys202022DataSet.CardReport, dbSearchDate.Value.ToString(), RadioGet(gbSearchElemental).ToString(), tbSearchCardName.Text);
+                }
+                else if (tbSearchCardName.Text == "")
+                {
+                    this.cardReportTableAdapter.FillByAuthor(this.infosys202022DataSet.CardReport, dbSearchDate.Value.ToString(), RadioGet(gbSearchElemental).ToString(), tbSearchAuthor.Text);
+                }
+                else
+                {
+                    this.cardReportTableAdapter.FillByAll(this.infosys202022DataSet.CardReport, dbSearchDate.Value.ToString(), tbSearchAuthor.Text, RadioGet(gbSearchElemental).ToString(), tbSearchCardName.Text);
+                }
+            }
+            else
+            {
+                if (tbSearchAuthor.Text == "" && tbSearchCardName.Text == "")
+                {
+                    this.cardReportTableAdapter.FillByDefaultOR(this.infosys202022DataSet.CardReport, dbSearchDate.Value.ToString(), RadioGet(gbSearchElemental).ToString());
+                }
+                else if (tbSearchAuthor.Text == "")
+                {
+                    this.cardReportTableAdapter.FillByNameOR(this.infosys202022DataSet.CardReport, dbSearchDate.Value.ToString(), RadioGet(gbSearchElemental).ToString(), tbSearchCardName.Text);
+                }
+                else if (tbSearchCardName.Text == "")
+                {
+                    this.cardReportTableAdapter.FillByAuthorOR(this.infosys202022DataSet.CardReport, dbSearchDate.Value.ToString(), RadioGet(gbSearchElemental).ToString(), tbSearchAuthor.Text);
+                }
+                else
+                {
+                    this.cardReportTableAdapter.FillByAllOR(this.infosys202022DataSet.CardReport, dbSearchDate.Value.ToString(), tbSearchAuthor.Text, RadioGet(gbSearchElemental).ToString(), tbSearchCardName.Text);
+                }
+            }
 
-            this.cardReportTableAdapter.FillByDate(this.infosys202022DataSet.CardReport, dbSearchDate.Value.ToString());
-            
             dgvCardData_Click(sender, e);
         }
+       
     }
 }

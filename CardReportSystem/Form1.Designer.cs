@@ -29,13 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.dbCreatedDate = new System.Windows.Forms.DateTimePicker();
-            this.cardReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.infosys202022DataSet = new CardReportSystem.infosys202022DataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.cbAuthor = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -72,9 +70,29 @@
             this.開くToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.名前を付けて保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.終了ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cardReportTableAdapter = new CardReportSystem.infosys202022DataSetTableAdapters.CardReportTableAdapter();
-            this.tableAdapterManager = new CardReportSystem.infosys202022DataSetTableAdapters.TableAdapterManager();
             this.dgvCardData = new System.Windows.Forms.DataGridView();
+            this.tbSearchCardName = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.bfSearchExe = new System.Windows.Forms.Button();
+            this.tbSearchAuthor = new System.Windows.Forms.TextBox();
+            this.dbSearchDate = new System.Windows.Forms.DateTimePicker();
+            this.gbSearchElemental = new System.Windows.Forms.GroupBox();
+            this.rbSearchFire = new System.Windows.Forms.RadioButton();
+            this.rbSearchAqua = new System.Windows.Forms.RadioButton();
+            this.rbSearchLight = new System.Windows.Forms.RadioButton();
+            this.rbSearchGod = new System.Windows.Forms.RadioButton();
+            this.rbSearchWind = new System.Windows.Forms.RadioButton();
+            this.rbSearchDark = new System.Windows.Forms.RadioButton();
+            this.rbSearchMagic = new System.Windows.Forms.RadioButton();
+            this.rbSearchTrap = new System.Windows.Forms.RadioButton();
+            this.rbSearchNorth = new System.Windows.Forms.RadioButton();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.rbAND = new System.Windows.Forms.RadioButton();
+            this.rbOR = new System.Windows.Forms.RadioButton();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,17 +100,18 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tbSearchCardName = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.bfSearchExe = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.cardReportBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.infosys202022DataSet)).BeginInit();
+            this.cardReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.infosys202022DataSet = new CardReportSystem.infosys202022DataSet();
+            this.cardReportTableAdapter = new CardReportSystem.infosys202022DataSetTableAdapters.CardReportTableAdapter();
+            this.tableAdapterManager = new CardReportSystem.infosys202022DataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.pbCard)).BeginInit();
             this.groupElemental.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCardData)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.gbSearchElemental.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cardReportBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infosys202022DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -111,16 +130,7 @@
             this.dbCreatedDate.Name = "dbCreatedDate";
             this.dbCreatedDate.Size = new System.Drawing.Size(200, 19);
             this.dbCreatedDate.TabIndex = 1;
-            // 
-            // cardReportBindingSource
-            // 
-            this.cardReportBindingSource.DataMember = "CardReport";
-            this.cardReportBindingSource.DataSource = this.infosys202022DataSet;
-            // 
-            // infosys202022DataSet
-            // 
-            this.infosys202022DataSet.DataSetName = "infosys202022DataSet";
-            this.infosys202022DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.dbCreatedDate.Value = new System.DateTime(2020, 7, 28, 15, 10, 41, 0);
             // 
             // label2
             // 
@@ -469,29 +479,19 @@
             this.終了ToolStripMenuItem.Text = "終了(&X)";
             this.終了ToolStripMenuItem.Click += new System.EventHandler(this.終了ToolStripMenuItem_Click);
             // 
-            // cardReportTableAdapter
-            // 
-            this.cardReportTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CardReportTableAdapter = this.cardReportTableAdapter;
-            this.tableAdapterManager.UpdateOrder = CardReportSystem.infosys202022DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
             // dgvCardData
             // 
             this.dgvCardData.AllowUserToAddRows = false;
             this.dgvCardData.AllowUserToDeleteRows = false;
             this.dgvCardData.AutoGenerateColumns = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCardData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCardData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvCardData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCardData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -502,31 +502,272 @@
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewImageColumn1});
             this.dgvCardData.DataSource = this.cardReportBindingSource;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCardData.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCardData.DefaultCellStyle = dataGridViewCellStyle14;
             this.dgvCardData.Location = new System.Drawing.Point(83, 459);
             this.dgvCardData.MultiSelect = false;
             this.dgvCardData.Name = "dgvCardData";
             this.dgvCardData.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCardData.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCardData.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvCardData.RowTemplate.Height = 21;
             this.dgvCardData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCardData.Size = new System.Drawing.Size(754, 220);
             this.dgvCardData.TabIndex = 22;
             this.dgvCardData.Click += new System.EventHandler(this.dgvCardData_Click);
+            // 
+            // tbSearchCardName
+            // 
+            this.tbSearchCardName.Location = new System.Drawing.Point(76, 147);
+            this.tbSearchCardName.Name = "tbSearchCardName";
+            this.tbSearchCardName.Size = new System.Drawing.Size(174, 19);
+            this.tbSearchCardName.TabIndex = 23;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox1.Controls.Add(this.rbOR);
+            this.groupBox1.Controls.Add(this.rbAND);
+            this.groupBox1.Controls.Add(this.bfSearchExe);
+            this.groupBox1.Controls.Add(this.tbSearchAuthor);
+            this.groupBox1.Controls.Add(this.tbSearchCardName);
+            this.groupBox1.Controls.Add(this.dbSearchDate);
+            this.groupBox1.Controls.Add(this.gbSearchElemental);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Location = new System.Drawing.Point(806, 79);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(318, 314);
+            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "検索";
+            // 
+            // bfSearchExe
+            // 
+            this.bfSearchExe.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.bfSearchExe.Location = new System.Drawing.Point(96, 240);
+            this.bfSearchExe.Name = "bfSearchExe";
+            this.bfSearchExe.Size = new System.Drawing.Size(134, 47);
+            this.bfSearchExe.TabIndex = 25;
+            this.bfSearchExe.Text = "実行";
+            this.bfSearchExe.UseVisualStyleBackColor = false;
+            this.bfSearchExe.Click += new System.EventHandler(this.bfSearchExe_Click);
+            // 
+            // tbSearchAuthor
+            // 
+            this.tbSearchAuthor.Location = new System.Drawing.Point(76, 52);
+            this.tbSearchAuthor.Name = "tbSearchAuthor";
+            this.tbSearchAuthor.Size = new System.Drawing.Size(174, 19);
+            this.tbSearchAuthor.TabIndex = 23;
+            // 
+            // dbSearchDate
+            // 
+            this.dbSearchDate.Location = new System.Drawing.Point(76, 19);
+            this.dbSearchDate.Name = "dbSearchDate";
+            this.dbSearchDate.Size = new System.Drawing.Size(200, 19);
+            this.dbSearchDate.TabIndex = 1;
+            this.dbSearchDate.Value = new System.DateTime(2020, 7, 28, 15, 10, 41, 0);
+            // 
+            // gbSearchElemental
+            // 
+            this.gbSearchElemental.Controls.Add(this.rbSearchFire);
+            this.gbSearchElemental.Controls.Add(this.rbSearchAqua);
+            this.gbSearchElemental.Controls.Add(this.rbSearchLight);
+            this.gbSearchElemental.Controls.Add(this.rbSearchGod);
+            this.gbSearchElemental.Controls.Add(this.rbSearchWind);
+            this.gbSearchElemental.Controls.Add(this.rbSearchDark);
+            this.gbSearchElemental.Controls.Add(this.rbSearchMagic);
+            this.gbSearchElemental.Controls.Add(this.rbSearchTrap);
+            this.gbSearchElemental.Controls.Add(this.rbSearchNorth);
+            this.gbSearchElemental.Location = new System.Drawing.Point(76, 77);
+            this.gbSearchElemental.Name = "gbSearchElemental";
+            this.gbSearchElemental.Size = new System.Drawing.Size(217, 50);
+            this.gbSearchElemental.TabIndex = 6;
+            this.gbSearchElemental.TabStop = false;
+            // 
+            // rbSearchFire
+            // 
+            this.rbSearchFire.AutoSize = true;
+            this.rbSearchFire.Checked = true;
+            this.rbSearchFire.Location = new System.Drawing.Point(6, 10);
+            this.rbSearchFire.Name = "rbSearchFire";
+            this.rbSearchFire.Size = new System.Drawing.Size(35, 16);
+            this.rbSearchFire.TabIndex = 3;
+            this.rbSearchFire.TabStop = true;
+            this.rbSearchFire.Tag = "1";
+            this.rbSearchFire.Text = "火";
+            this.rbSearchFire.UseVisualStyleBackColor = true;
+            // 
+            // rbSearchAqua
+            // 
+            this.rbSearchAqua.AutoSize = true;
+            this.rbSearchAqua.Location = new System.Drawing.Point(47, 10);
+            this.rbSearchAqua.Name = "rbSearchAqua";
+            this.rbSearchAqua.Size = new System.Drawing.Size(35, 16);
+            this.rbSearchAqua.TabIndex = 3;
+            this.rbSearchAqua.Tag = "2";
+            this.rbSearchAqua.Text = "水";
+            this.rbSearchAqua.UseVisualStyleBackColor = true;
+            // 
+            // rbSearchLight
+            // 
+            this.rbSearchLight.AutoSize = true;
+            this.rbSearchLight.Location = new System.Drawing.Point(6, 32);
+            this.rbSearchLight.Name = "rbSearchLight";
+            this.rbSearchLight.Size = new System.Drawing.Size(35, 16);
+            this.rbSearchLight.TabIndex = 3;
+            this.rbSearchLight.Tag = "6";
+            this.rbSearchLight.Text = "光";
+            this.rbSearchLight.UseVisualStyleBackColor = true;
+            // 
+            // rbSearchGod
+            // 
+            this.rbSearchGod.AutoSize = true;
+            this.rbSearchGod.Location = new System.Drawing.Point(47, 32);
+            this.rbSearchGod.Name = "rbSearchGod";
+            this.rbSearchGod.Size = new System.Drawing.Size(35, 16);
+            this.rbSearchGod.TabIndex = 3;
+            this.rbSearchGod.Tag = "7";
+            this.rbSearchGod.Text = "神";
+            this.rbSearchGod.UseVisualStyleBackColor = true;
+            // 
+            // rbSearchWind
+            // 
+            this.rbSearchWind.AutoSize = true;
+            this.rbSearchWind.Location = new System.Drawing.Point(88, 10);
+            this.rbSearchWind.Name = "rbSearchWind";
+            this.rbSearchWind.Size = new System.Drawing.Size(35, 16);
+            this.rbSearchWind.TabIndex = 3;
+            this.rbSearchWind.Tag = "3";
+            this.rbSearchWind.Text = "風";
+            this.rbSearchWind.UseVisualStyleBackColor = true;
+            // 
+            // rbSearchDark
+            // 
+            this.rbSearchDark.AutoSize = true;
+            this.rbSearchDark.Location = new System.Drawing.Point(171, 10);
+            this.rbSearchDark.Name = "rbSearchDark";
+            this.rbSearchDark.Size = new System.Drawing.Size(35, 16);
+            this.rbSearchDark.TabIndex = 3;
+            this.rbSearchDark.Tag = "5";
+            this.rbSearchDark.Text = "闇";
+            this.rbSearchDark.UseVisualStyleBackColor = true;
+            // 
+            // rbSearchMagic
+            // 
+            this.rbSearchMagic.AutoSize = true;
+            this.rbSearchMagic.Location = new System.Drawing.Point(88, 31);
+            this.rbSearchMagic.Name = "rbSearchMagic";
+            this.rbSearchMagic.Size = new System.Drawing.Size(47, 16);
+            this.rbSearchMagic.TabIndex = 3;
+            this.rbSearchMagic.Tag = "8";
+            this.rbSearchMagic.Text = "魔法";
+            this.rbSearchMagic.UseVisualStyleBackColor = true;
+            // 
+            // rbSearchTrap
+            // 
+            this.rbSearchTrap.AutoSize = true;
+            this.rbSearchTrap.Location = new System.Drawing.Point(141, 32);
+            this.rbSearchTrap.Name = "rbSearchTrap";
+            this.rbSearchTrap.Size = new System.Drawing.Size(35, 16);
+            this.rbSearchTrap.TabIndex = 3;
+            this.rbSearchTrap.Tag = "9";
+            this.rbSearchTrap.Text = "罠";
+            this.rbSearchTrap.UseVisualStyleBackColor = true;
+            // 
+            // rbSearchNorth
+            // 
+            this.rbSearchNorth.AutoSize = true;
+            this.rbSearchNorth.Location = new System.Drawing.Point(129, 10);
+            this.rbSearchNorth.Name = "rbSearchNorth";
+            this.rbSearchNorth.Size = new System.Drawing.Size(35, 16);
+            this.rbSearchNorth.TabIndex = 3;
+            this.rbSearchNorth.Tag = "4";
+            this.rbSearchNorth.Text = "地";
+            this.rbSearchNorth.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label8.Location = new System.Drawing.Point(30, 19);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(40, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "日付：";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label9.Location = new System.Drawing.Point(17, 54);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(53, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "記録者：";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label10.Location = new System.Drawing.Point(30, 87);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(40, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "属性：";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(882, 134);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(174, 19);
+            this.textBox2.TabIndex = 23;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label11.Location = new System.Drawing.Point(14, 149);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(56, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "カード名：";
+            // 
+            // rbAND
+            // 
+            this.rbAND.AutoSize = true;
+            this.rbAND.Checked = true;
+            this.rbAND.Location = new System.Drawing.Point(76, 203);
+            this.rbAND.Name = "rbAND";
+            this.rbAND.Size = new System.Drawing.Size(47, 16);
+            this.rbAND.TabIndex = 26;
+            this.rbAND.TabStop = true;
+            this.rbAND.Text = "AND";
+            this.rbAND.UseVisualStyleBackColor = true;
+            // 
+            // rbOR
+            // 
+            this.rbOR.AutoSize = true;
+            this.rbOR.Location = new System.Drawing.Point(211, 203);
+            this.rbOR.Name = "rbOR";
+            this.rbOR.Size = new System.Drawing.Size(39, 16);
+            this.rbOR.TabIndex = 26;
+            this.rbOR.Text = "OR";
+            this.rbOR.UseVisualStyleBackColor = true;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -582,44 +823,25 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.ReadOnly = true;
             // 
-            // tbSearchCardName
+            // cardReportBindingSource
             // 
-            this.tbSearchCardName.Location = new System.Drawing.Point(76, 64);
-            this.tbSearchCardName.Name = "tbSearchCardName";
-            this.tbSearchCardName.Size = new System.Drawing.Size(174, 19);
-            this.tbSearchCardName.TabIndex = 23;
+            this.cardReportBindingSource.DataMember = "CardReport";
+            this.cardReportBindingSource.DataSource = this.infosys202022DataSet;
             // 
-            // label8
+            // infosys202022DataSet
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(25, 67);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 12);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "カード名";
+            this.infosys202022DataSet.DataSetName = "infosys202022DataSet";
+            this.infosys202022DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // groupBox1
+            // cardReportTableAdapter
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.groupBox1.Controls.Add(this.bfSearchExe);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.tbSearchCardName);
-            this.groupBox1.Location = new System.Drawing.Point(806, 79);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(318, 171);
-            this.groupBox1.TabIndex = 25;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "検索";
+            this.cardReportTableAdapter.ClearBeforeFill = true;
             // 
-            // bfSearchExe
+            // tableAdapterManager
             // 
-            this.bfSearchExe.Location = new System.Drawing.Point(76, 106);
-            this.bfSearchExe.Name = "bfSearchExe";
-            this.bfSearchExe.Size = new System.Drawing.Size(75, 23);
-            this.bfSearchExe.TabIndex = 25;
-            this.bfSearchExe.Text = "実行";
-            this.bfSearchExe.UseVisualStyleBackColor = true;
-            this.bfSearchExe.Click += new System.EventHandler(this.bfSearchExe_Click);
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CardReportTableAdapter = this.cardReportTableAdapter;
+            this.tableAdapterManager.UpdateOrder = CardReportSystem.infosys202022DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // Form1
             // 
@@ -631,6 +853,7 @@
             this.Controls.Add(this.btImageDelete);
             this.Controls.Add(this.btCardDelete);
             this.Controls.Add(this.btCardChange);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.btCardSave);
             this.Controls.Add(this.btCardLoad);
             this.Controls.Add(this.btCardRegister);
@@ -654,8 +877,6 @@
             this.Name = "Form1";
             this.Text = "カード登録アプリ";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.cardReportBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.infosys202022DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCard)).EndInit();
             this.groupElemental.ResumeLayout(false);
             this.groupElemental.PerformLayout();
@@ -664,6 +885,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCardData)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gbSearchElemental.ResumeLayout(false);
+            this.gbSearchElemental.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cardReportBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infosys202022DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -722,9 +947,27 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.TextBox tbSearchCardName;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button bfSearchExe;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.DateTimePicker dbSearchDate;
+        private System.Windows.Forms.GroupBox gbSearchElemental;
+        private System.Windows.Forms.RadioButton rbSearchFire;
+        private System.Windows.Forms.RadioButton rbSearchAqua;
+        private System.Windows.Forms.RadioButton rbSearchLight;
+        private System.Windows.Forms.RadioButton rbSearchGod;
+        private System.Windows.Forms.RadioButton rbSearchWind;
+        private System.Windows.Forms.RadioButton rbSearchDark;
+        private System.Windows.Forms.RadioButton rbSearchMagic;
+        private System.Windows.Forms.RadioButton rbSearchTrap;
+        private System.Windows.Forms.RadioButton rbSearchNorth;
+        private System.Windows.Forms.TextBox tbSearchAuthor;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.RadioButton rbOR;
+        private System.Windows.Forms.RadioButton rbAND;
+        private System.Windows.Forms.Label label11;
     }
 }
 
