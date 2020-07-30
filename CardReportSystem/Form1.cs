@@ -461,7 +461,7 @@ namespace CardReportSystem
                 }
                 else if (tbSearchCardName.Text == "")
                 {
-                    this.cardReportTableAdapter.FillByAuthorOR(this.infosys202022DataSet.CardReport, dbSearchDate.Value.ToString(), RadioGet(gbSearchElemental).ToString(), tbSearchAuthor.Text);
+                    this.cardReportTableAdapter.FillByAuthorOR(this.infosys202022DataSet.CardReport, dbSearchDate.Value.ToString(), tbSearchAuthor.Text, RadioGet(gbSearchElemental).ToString());
                 }
                 else
                 {
